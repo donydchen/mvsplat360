@@ -1,0 +1,34 @@
+defaults:
+  - view_sampler: bounded
+
+name: dl3dv
+roots: [datasets/DL3DV10K]
+make_baseline_1: true
+augment: true
+
+image_shape: [270, 480]
+background_color: [0.0, 0.0, 0.0]
+cameras_are_circular: false
+
+baseline_epsilon: 1e-3
+max_fov: 100.0
+
+skip_bad_shape: true
+near: -1.
+far: -1.
+baseline_scale_bounds: true
+shuffle_val: true
+test_len: -1
+test_chunk_interval: 1
+sort_target_index: false
+sort_context_index: false
+
+train_times_per_scene: 1
+test_times_per_scene: 1
+ori_image_shape: [270, 480]
+overfit_max_views: 148
+use_index_to_load_chunk: false
+
+test_chunk_start: null
+test_chunk_end: null
+use_only_indexed_scenes: false

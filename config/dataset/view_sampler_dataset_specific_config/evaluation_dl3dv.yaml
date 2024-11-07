@@ -1,0 +1,7 @@
+# @package _global_
+
+dataset:
+  view_sampler:
+    index_path: assets/dl3dv_evaluation/dl3dv_ctx_5v_tgt_56v.json
+    num_target_views: 56
+    num_context_views: 5

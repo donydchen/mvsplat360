@@ -1,0 +1,17 @@
+name: boundedv2
+
+num_target_views: 5
+num_context_views: 5
+
+min_distance_between_context_views: 80
+max_distance_between_context_views: 120
+max_distance_to_context_views: 0
+
+context_gap_warm_up_steps: 0
+target_gap_warm_up_steps: 0
+
+initial_min_distance_between_context_views: 50
+initial_max_distance_between_context_views: 80
+initial_max_distance_to_context_views: 0
+extra_views_sampling_strategy: random
+target_views_replace_sample: true

@@ -1,0 +1,88 @@
+# @package _global_
+
+defaults:
+  - override /dataset: re10k
+  - override /dataset/view_sampler: boundedv2
+  - override /model/encoder: costvolume
+  - override /loss: [mse, lpips]
+  - override /model/refiner: svd_wo_mb_fps
+
+wandb:
+  name: re10k_mvsplat360
+  tags: [re10k_mvsplat360,]
+
+data_loader:
+  train:
+    batch_size: 2
+    num_workers: 5
+  test:
+    num_workers: 5
+
+# ----- Additional params for default best model customization
+model:
+  encoder:
+    num_depth_candidates: 128
+    costvolume_unet_feat_dim: 128
+    costvolume_unet_channel_mult: [1,1,1]
+    costvolume_unet_attn_res: [4]
+    gaussians_per_pixel: 1
+    depth_unet_feat_dim: 32
+    depth_unet_attn_res: [16]
+    depth_unet_channel_mult: [1,1,1,1,1]
+    legacy_2views: false
+    grid_sample_disable_cudnn: true
+    fit_ckpt: true
+    gaussian_adapter:
+      feature_sh_degree: 2
+      n_feature_channels: 4
+  refiner:
+    svd_clip_cond_type: average
+    gs_feat_scale_factor: 0.25
+    en_and_decode_n_samples_a_time: 1
+    weight_train_gs_feat_via_enc: 0.01
+    train_gs_feat_enc_type: target_gt
+
+# lpips loss
+loss:
+  lpips:
+    apply_after_step: 0
+    weight: 0.05
+
+dataset: 
+  near: 1.
+  far: 100.
+  baseline_scale_bounds: false
+  make_baseline_1: false
+  sort_target_index: true
+  sort_context_index: true 
+  test_chunk_interval: -1
+  view_sampler:
+    num_target_views: 14
+    target_views_replace_sample: false
+
+test:
+  eval_time_skip_steps: 0
+  dec_chunk_size: 30
+
+trainer:
+  max_steps: 100_001
+  val_check_interval: 500
+  accumulate_grad_batches: 2
+
+
+train:
+  tune_mvsplat: true
+  print_log_every_n_steps: 50
+  val_log_images_to_video: true
+
+optimizer:
+  lr: 1.e-5
+  refiner_lr: 1.e-5
+  sched_method: one_cycle
+
+checkpointing:
+  save_top_k: 1
+  pretrained_model: checkpoints/re10k.ckpt
+  every_n_train_steps: 250
+
+use_diff_refinement: true

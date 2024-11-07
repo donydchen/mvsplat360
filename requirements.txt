@@ -1,0 +1,31 @@
+wheel
+tqdm
+pytorch_lightning==2.2.2
+black
+ruff
+hydra-core
+jaxtyping
+beartype
+wandb
+einops
+colorama
+scikit-image
+colorspacious
+matplotlib
+moviepy
+imageio
+timm
+dacite
+lpips
+e3nn
+plyfile
+tabulate
+svg.py
+opencv-python==4.6.0.66
+sk-video
+DISTS_pytorch
+pytorch-fid
+# 3dgs renderer
+git+https://github.com/Chrixtar/latent-gaussian-rasterization.git
+# sgm
+git+https://github.com/Stability-AI/generative-models.git
