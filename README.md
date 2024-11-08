@@ -15,7 +15,7 @@
     <a href="https://jianfei-cai.github.io/">Jianfei Cai</a>
   </p>
   <h3 align="center">NeurIPS 2024</h3>
-  <h3 align="center"><a href="https://donydchen.github.io/mvsplat360/static/pdfs/chen2024mvsplat360.pdf">Paper</a> | <a href="https://donydchen.github.io/mvsplat360/">Project Page</a> | <a href="https://huggingface.co/donydchen/mvsplat360/tree/main">Pretrained Models</a> </h3>
+  <h3 align="center"><a href="https://arxiv.org/abs/2411.04924">Paper</a> | <a href="https://donydchen.github.io/mvsplat360/">Project Page</a> | <a href="https://huggingface.co/donydchen/mvsplat360/tree/main">Pretrained Models</a> </h3>
 
 <br>
 </p>
