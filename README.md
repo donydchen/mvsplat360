@@ -28,7 +28,7 @@ To get started, create a conda virtual environment using Python 3.10+ and instal
 
 ```bash
 conda create -n mvsplat360 python=3.10
-conda avtivate mvsplat360
+conda activate mvsplat360
 pip install torch==2.2.2 torchvision==0.17.2 torchaudio==2.2.2 xformers==0.0.25.post1 --index-url https://download.pytorch.org/whl/cu118
 pip install -r requirements.txt
 ```
