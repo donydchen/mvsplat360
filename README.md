@@ -16,8 +16,6 @@
   </p>
   <h3 align="center">NeurIPS 2024</h3>
   <h3 align="center"><a href="https://arxiv.org/abs/2411.04924">Paper</a> | <a href="https://donydchen.github.io/mvsplat360/">Project Page</a> | <a href="https://huggingface.co/donydchen/mvsplat360/tree/main">Pretrained Models</a> </h3>
-
-<br>
 </p>
 
 https://github.com/user-attachments/assets/4cfa6654-5bb5-4f72-a264-6941bcf00bed
@@ -50,7 +48,7 @@ A pre-processed tiny subset of DL3DV (containing 5 scenes) is provided [here](ht
 
 To render novel views,
 
-* get the pretrained models [dl3dv_480p.ckpt](https://huggingface.co/donydchen/mvsplat360/blob/main/dl3dv_480p.ckpt), and save them to `/checkpoints`
+* get the pre-trained models [dl3dv_480p.ckpt](https://huggingface.co/donydchen/mvsplat360/blob/main/dl3dv_480p.ckpt), and save it to `/checkpoints`
 
 * run the following:
 
@@ -61,14 +59,14 @@ wandb.name=dl3dv_480P_ctx5_tgt56 \
 mode=test \
 dataset/view_sampler=evaluation \
 dataset.roots=[datasets/dl3dv_tiny] \
-checkpointing.load=outputs/dl3dv_480p.ckpt
+checkpointing.load=checkpoints/dl3dv_480p.ckpt
 ```
 
 * the rendered novel views will be stored under `outputs/test/{wandb.name}`
 
 To evaluate the quantitative performance, kindly refer to [compute_dl3dv_metrics.py](src/scripts/compute_dl3dv_metrics.py)
 
-To render videos from a pretrained model, run the following
+To render videos from a pre-trained model, run the following
 
 ```bash
 # dl3dv; requires at least 38G VRAM
@@ -77,13 +75,13 @@ wandb.name=dl3dv_480P_ctx5_tgt56_video \
 mode=test \
 dataset/view_sampler=evaluation \
 dataset.roots=[datasets/dl3dv_tiny] \
-checkpointing.load=outputs/dl3dv_480p.ckpt 
+checkpointing.load=checkpoints/dl3dv_480p.ckpt 
 ```
 
 ### Training
 
-* Download the encoder pretrained weight from [MVSplat](https://github.com/donydchen/mvsplat) and save it to `checkpoints/re10k.ckpt`.
-* Download SVD pretrained weight from [generative-models](https://huggingface.co/stabilityai/stable-video-diffusion-img2vid/tree/main) and save it to `checkpoints/svd.safetensors`
+* Download the encoder pre-trained weight from [MVSplat](https://github.com/donydchen/mvsplat?tab=readme-ov-file#evaluation) and save it to `checkpoints/re10k.ckpt`.
+* Download SVD pre-trained weight from [generative-models](https://huggingface.co/stabilityai/stable-video-diffusion-img2vid/tree/main) and save it to `checkpoints/svd.safetensors`.
 * Run the following:
 
 ```bash
@@ -91,7 +89,7 @@ checkpointing.load=outputs/dl3dv_480p.ckpt
 python -m src.main +experiment=dl3dv_mvsplat360 dataset.roots=[datasets/dl3dv]
 ```
 
-* To fine tune from our released model, append `checkpointing.load=outputs/dl3dv_480p.ckpt` and `checkpointing.resume=false` to the above command. 
+* Alternatively, you can also fine-tune from our released model by appending `checkpointing.load=checkpoints/dl3dv_480p.ckpt` and `checkpointing.resume=false` to the above command. 
 * You can also set up your wandb account [here](config/main.yaml) for logging. Have fun.
 
 ## BibTeX
