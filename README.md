@@ -92,6 +92,12 @@ python -m src.main +experiment=dl3dv_mvsplat360 dataset.roots=[datasets/dl3dv]
 * Alternatively, you can also fine-tune from our released model by appending `checkpointing.load=checkpoints/dl3dv_480p.ckpt` and `checkpointing.resume=false` to the above command. 
 * You can also set up your wandb account [here](config/main.yaml) for logging. Have fun.
 
+## Camera Conventions
+
+The camera intrinsic matrices are normalized (the first row is divided by image width, and the second row is divided by image height). More details are at [this comment](https://github.com/donydchen/mvsplat/issues/28#issuecomment-2126416038).
+
+The camera extrinsic matrices are OpenCV-style camera-to-world matrices (+X right, +Y down, +Z camera looks into the screen).
+
 ## BibTeX
 
 ```bibtex
